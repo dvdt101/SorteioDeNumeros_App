@@ -6,7 +6,8 @@ import {Text,
         StyleSheet,
         TextInput,
         Image,
-        ScrollView    
+        ScrollView,
+        Vibration   
       } from 'react-native'
 
 const app = () => {
@@ -15,9 +16,11 @@ const app = () => {
   const [limite, setLimite] = useState(100)
   
   function handleNumero(){
-
+    
     const novo_numero = Math.floor(Math.random()*limite)
+    console.log(novo_numero)
     setNumero(novo_numero)
+    Vibration.vibrate()
   }
 
  
@@ -29,10 +32,8 @@ const app = () => {
         <Image
         source={require('../assets/img/image.jpg')}
         style={style.image}
-        />
-      
+        /> 
         <View style={style.view}>
-          
             <Text style={style.numero}>{numero}</Text>
             <TouchableOpacity style={style.botao} onPress={handleNumero}>
               <Text style={style.botaoTexto}>Gerar numero</Text>
@@ -86,6 +87,7 @@ const style = StyleSheet.create ({
 
   input:{
     marginTop:40,
+    marginBottom:10,
     backgroundColor:'lightgray',
     width:'35%',
     borderRadius:5,
