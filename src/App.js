@@ -4,7 +4,9 @@ import {Text,
         SafeAreaView, 
         TouchableOpacity, 
         StyleSheet,
-        TextInput
+        TextInput,
+        Image,
+        ScrollView    
       } from 'react-native'
 
 const app = () => {
@@ -18,52 +20,94 @@ const app = () => {
     setNumero(novo_numero)
   }
 
+ 
+  
+
   return(
-    <SafeAreaView style={style.container}>
-      <Text style={style.numero}>{numero}</Text>
-      <TouchableOpacity style={style.botao} onPress={handleNumero}>
-        <Text style={{textAlign:'center'}}>Gerar numero</Text>
-      </TouchableOpacity>
-      <TextInput
-      placeholder="Digite o limite"
-      keyboardType='number-pad'
-      style={style.input}
-      onChangeText={text => setLimite(text)}
-      />
-    </SafeAreaView>
-    
+    <ScrollView style={{backgroundColor:'white'}}>
+      <SafeAreaView style={style.container}>
+        <Image
+        source={require('../assets/img/image.jpg')}
+        style={style.image}
+        />
+      
+        <View style={style.view}>
+          
+            <Text style={style.numero}>{numero}</Text>
+            <TouchableOpacity style={style.botao} onPress={handleNumero}>
+              <Text style={style.botaoTexto}>Gerar numero</Text>
+           </TouchableOpacity>
+           <TextInput
+            placeholder="Definir o limite"
+            placeholderTextColor="#8CC63E"
+            keyboardType='number-pad'
+            textAlign='center'
+            style={style.input}
+            onChangeText={text => setLimite(text)}
+            /> 
+          
+       </View>
+      
+      </SafeAreaView>
+    </ScrollView>
   )
 }
 
 const style = StyleSheet.create ({
   
   container:{
-    backgroundColor:'#FF0000',
+    backgroundColor:'#8CC63E',
     flex:1,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    
   },
   numero:{
-    fontSize:60,
-    color:'white',
+    fontSize:78,
+    color:'#8CC63E',
     fontWeight:'bold'
   },
 
   botao:{
-    backgroundColor:'white',
-    width:'80%',
-    paddingHorizontal:5,
-    paddingVertical:10,
-    borderRadius:5,
+    backgroundColor:'#8CC63E',
+    width:'60%',
+    paddingHorizontal:25,
+    paddingVertical:12,
+    borderRadius:25,
     marginTop:10
+  },
+
+  botaoTexto:{
+    textAlign:'center', 
+    color:'white', 
+    fontSize:18, 
+    fontWeight:'bold'
   },
 
   input:{
     marginTop:40,
-    backgroundColor:"white",
+    backgroundColor:'lightgray',
     width:'35%',
-    borderRadius:5
+    borderRadius:5,
+    justifyContent:'center',
+    alignItems:'center'
+     
   },
+
+  view:{
+    backgroundColor:'#FFFFFF',
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    width:'100%',
+    
+  },
+
+  image:{
+    
+    justifyContent: "center",
+    
+  }
 
 
 })
