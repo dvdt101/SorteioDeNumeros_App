@@ -10,21 +10,23 @@ import {Text,
         Vibration   
       } from 'react-native'
 
+
+
 const app = () => {
 
+  const [shouldShow, setShouldShow] = useState(false);
   const [numero, setNumero] = useState(0)
   const [limite, setLimite] = useState(100)
   
   function handleNumero(){
-    
+    //var limite_sorteio = limite + 1;
     const novo_numero = Math.floor(Math.random()*limite)
-    console.log(novo_numero)
     setNumero(novo_numero)
     Vibration.vibrate()
+    setShouldShow(true)
+    setTimeout(() => {setShouldShow(false)}, 3000)
+    
   }
-
- 
-  
 
   return(
     <ScrollView style={{backgroundColor:'white'}}>
@@ -33,7 +35,14 @@ const app = () => {
         source={require('../assets/img/image.jpg')}
         style={style.image}
         /> 
+        
         <View style={style.view}>
+
+        {shouldShow ? <Image
+            source={require('../assets/img/confetti.gif')}
+            style={style.gif}
+            
+            /> : null}
             <Text style={style.numero}>{numero}</Text>
             <TouchableOpacity style={style.botao} onPress={handleNumero}>
               <Text style={style.botaoTexto}>Gerar numero</Text>
@@ -108,6 +117,19 @@ const style = StyleSheet.create ({
   image:{
     
     justifyContent: "center",
+    
+  },
+
+  gif:{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    
+    justifyContent: 'center',
+    alignItems: 'center',
+    
     
   }
 
